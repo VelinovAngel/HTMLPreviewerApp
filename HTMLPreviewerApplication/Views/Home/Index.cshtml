@@ -1,4 +1,7 @@
-﻿@{ ViewBag.Title = "Render your HTML code"; }
+﻿
+@{ 
+        ViewData["Title"] = "Render your HTML code"; 
+ }
 
 
 <div class="text-center">
@@ -6,6 +9,7 @@
     <h5 class="font-weight-lighter">Here you can write and see HTML in action.</h5>
 
     <br />
+    <hr />
 </div>
 <div class="container">
     <form method="post">
@@ -23,10 +27,18 @@
                 </div>
             </div>
         </div>
+        <div class="row offset-5">
+            <div class="pt-3">
+                <button type="submit" class="saveButton">Save</button>
+            </div>     
+        </div>
     </form>
     <div class="text-center">
-        <div class="pt-5">
+        <div class="pt-2">
             <button type="submit" class="submit" id="redering">Run</button>
+        </div>
+        <div class="pt-2">
+            <button type="submit" class="checkButton">Check original</button>
         </div>
     </div>
 </div>

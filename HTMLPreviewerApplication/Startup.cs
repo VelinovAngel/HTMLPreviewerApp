@@ -1,6 +1,7 @@
 namespace HTMLPreviewerApplication
 {
     using HTMLPreviewerApplication.Data;
+    using HTMLPreviewerApplication.Data.Models;
     using Microsoft.AspNetCore.Builder;
     using Microsoft.AspNetCore.Hosting;
     using Microsoft.AspNetCore.Http;
@@ -26,9 +27,11 @@ namespace HTMLPreviewerApplication
             services.AddDbContext<ApplicationDbContext>(options =>
                 options.UseSqlServer(
                     Configuration.GetConnectionString("DefaultConnection")));
+
             services.AddDatabaseDeveloperPageExceptionFilter();
 
-            services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
+            services
+                .AddDefaultIdentity<User>(options => options.SignIn.RequireConfirmedAccount = true)
                 .AddEntityFrameworkStores<ApplicationDbContext>();
 
             services.Configure<CookiePolicyOptions>(
@@ -50,7 +53,6 @@ namespace HTMLPreviewerApplication
                }).AddRazorRuntimeCompilation();
 
 
-
             services.AddRazorPages(options =>
             {
                 options.Conventions.AddAreaPageRoute("Identity", "/Account/Register", "/Register");
@@ -61,6 +63,14 @@ namespace HTMLPreviewerApplication
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
+            //This method calls everytime new migration.
+            using (var serviceScope = app.ApplicationServices.CreateScope())
+            {
+                var dbContext = serviceScope.ServiceProvider.GetRequiredService<ApplicationDbContext>();
+
+                dbContext.Database.Migrate();
+            }
+
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();

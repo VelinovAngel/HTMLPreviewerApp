@@ -1,5 +1,4 @@
-﻿
-const btn = document.getElementById('redering');
+﻿const btn = document.getElementById('redering');
 btn.addEventListener('click', renderhtml);
 
 function renderhtml(ev) {
@@ -9,5 +8,6 @@ function renderhtml(ev) {
     const htmlOutput = document.getElementById('htmlCodeOutput');
 
     htmlOutput.innerHTML = htmlInput.value;
+
 }
 
