@@ -1,8 +1,43 @@
 ﻿@{
-    ViewData["Title"] = "Home Page";
+    ViewBag.Title = "Render your HTML code";
 }
 
+
 <div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+    <h1 class="font-italic">Welcome to Online HTML Previewer</h1>
+    <h5 class="font-weight-lighter">Here you can write and see HTML in action.</h5>
+
+    <br />
 </div>
+<div class="container">
+    <form onsubmit="redering()">
+        <div class="row">
+            <br />
+            <div class="col-md-5">
+                <label for="htmlCode">Write your HTML Code here:</label>
+                <textarea class="textarea"id="htmlCodeInput" name="htmlCodeInput" rows="25" cols="70"></textarea>
+            </div>
+
+
+            <div class="col-md-5 offset-2">
+                <label for="htmlCodeOutput">HTML Preview:</label>
+                <div id="htmlCodeOutput" class="textarea outputTextarea">
+                    
+                </div>
+              
+            </div>
+
+        </div>
+        <div class="text-center">
+
+            <div class="pt-5">
+                <button type="submit" class="submit" id="redering">Run</button>
+            </div>
+        </div>
+    </form>
+</div>
+
+
+@section IndexScript {
+    <script type="text/javascript" src="~/js/previewJs/preview.js"></script>
+}

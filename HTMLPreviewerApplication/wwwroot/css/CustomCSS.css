@@ -19,9 +19,40 @@
 
 .submit {
     background-color: #32CD32;
-    /**
-     * If the input field has a border,
-     * you need it here too to achieve equal heights.
-     */
     border: 1px solid transparent;
 }
+
+.textarea {
+    font-size: .8rem;
+    letter-spacing: 1px;
+    padding: 25px;
+    max-width: 100%;
+    line-height: 1.5;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    box-shadow: 5px 5px 5px #999;
+}
+
+label {
+    display: block;
+    margin-bottom: 15px;
+    font-size: 20px;
+}
+
+.outputTextarea {
+    -moz-appearance: textfield-multiline;
+    -webkit-appearance: textarea;
+    border-radius: 5px;
+    margin-left: 20px;
+    margin-top: 20px;
+    border: 1px solid #ccc;
+    font: medium -moz-fixed;
+    font: -webkit-small-control;
+    border-radius: 5px;
+    height: 520px;
+    overflow: auto;
+    padding: 2px;
+    resize: both;
+    width: 400px;
+}
+

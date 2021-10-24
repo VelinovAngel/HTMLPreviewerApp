@@ -11,5 +11,6 @@ ASP.NET Core MVC - Web Application for previewing HTML code.
 <li>  MSSQL Server </li>
 <li>  Custom CSS </li>
 <li>  Bootstrap </li>
+<li>  Used Free Privacy Policy Generator. </li>
 
 </ul>
