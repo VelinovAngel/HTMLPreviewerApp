@@ -2,6 +2,7 @@ namespace HTMLPreviewerApplication
 {
     using HTMLPreviewerApplication.Data;
     using HTMLPreviewerApplication.Data.Models;
+    using HTMLPreviewerApplication.Service.HtmlSampleService;
     using Microsoft.AspNetCore.Builder;
     using Microsoft.AspNetCore.Hosting;
     using Microsoft.AspNetCore.Http;
@@ -50,7 +51,7 @@ namespace HTMLPreviewerApplication
             services.AddAntiforgery(option =>
             {
                 option.HeaderName = "X-CSRF-TOKEN";
-            });
+            });     
 
             services.AddControllersWithViews(
                options =>
@@ -58,6 +59,7 @@ namespace HTMLPreviewerApplication
                    options.Filters.Add(new AutoValidateAntiforgeryTokenAttribute());
                }).AddRazorRuntimeCompilation();
 
+            services.AddTransient<IHtmlSampleService, HtmlSampleService>();
 
             services.AddRazorPages(options =>
             {
