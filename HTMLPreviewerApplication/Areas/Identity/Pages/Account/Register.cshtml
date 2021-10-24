@@ -1,0 +1,42 @@
+﻿@page
+@model RegisterModel
+
+
+<h1>@ViewData["Title"]</h1>
+
+
+<div class="offset-4">
+    <div class="col-md-6 border shadow">
+        <section>
+            <form asp-route-returnUrl="@Model.ReturnUrl" method="post">
+                <div class="text-center">
+                    <h4>Register</h4>
+                    <hr />
+                </div>
+                <div asp-validation-summary="All" class="text-danger"></div>
+                <div class="form-group">
+                    <label asp-for="Input.Email"></label>
+                    <input asp-for="Input.Email" class="form-control" />
+                </div>
+                <div class="form-group">
+                    <label asp-for="Input.Password"></label>
+                    <input asp-for="Input.Password" class="form-control" />
+                </div>
+                <div class="form-group">
+                    <label asp-for="Input.ConfirmPassword"></label>
+                    <input asp-for="Input.ConfirmPassword" class="form-control" />
+                </div>
+                <div class="text-center">
+                    <button type="submit" class="submit">Register</button>
+                </div>
+                <br />
+            </form>
+        </section>
+    </div>
+
+</div>
+
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}
