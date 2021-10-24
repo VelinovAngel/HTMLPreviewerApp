@@ -3,32 +3,36 @@
 @inject SignInManager<User> SignInManager
 @inject UserManager<User> UserManager
 
-@{ this.ViewData["Title"] = "Render your HTML code";
-                var action = string.Empty;
+@{ 
+     this.ViewData["Title"] = "Render your HTML code";
+     var action = string.Empty;
 
-                if (Model == null)
-                {
-                    action = "Save";
-                }
-                else
-                {
-                    action = "Edit";
-                } }
+     if (Model == null)
+     {
+         action = "Save";
+     }
+     else
+     {
+         action = "Edit";
+     } 
+}
 
 
 @if (this.TempData.ContainsKey("Message"))
 {
-<div class="alert alert-danger alert-dismissible fade show">
-    <button type="button" class="close" data-dismiss="alert">&times;</button>
-    @this.TempData["Message"]
-</div>}
+    <div class="alert alert-danger alert-dismissible fade show">
+        <button type="button" class="close" data-dismiss="alert">&times;</button>
+        @this.TempData["Message"]
+    </div>
+}
 
 @if (this.TempData.ContainsKey("Success"))
 {
-<div class="alert alert-success alert-dismissible fade show">
-    <button type="button" class="close" data-dismiss="alert">&times;</button>
-    @this.TempData["Message"]
-</div>}
+    <div class="alert alert-success alert-dismissible fade show">
+        <button type="button" class="close" data-dismiss="alert">&times;</button>
+        @this.TempData["Message"]
+    </div>
+}
 
 <div class="text-center">
     <h1 class="font-italic">Welcome to Online HTML Previewer</h1>
@@ -57,9 +61,10 @@
         <div class="row offset-5">
             @if (this.SignInManager.IsSignedIn(User))
             {
-<div class="pt-3">
-    <button asp-controller="Html" asp-action="@action" type="submit" class="saveButton">Save</button>
-</div>            }
+                <div class="pt-3">
+                    <button asp-controller="Html" asp-action="@action" type="submit" class="saveButton">Save</button>
+                </div>            
+            }
         </div>
     </form>
     <div class="text-center">
@@ -68,9 +73,10 @@
         </div>
         @if (this.SignInManager.IsSignedIn(User) && Model != null)
         {
-<div class="pt-2">
-    <button type="submit" class="checkButton">Check original</button>
-</div>}
+            <div class="pt-2">
+                <button type="submit" class="checkButton">Check original</button>
+            </div>
+        }
     </div>
 </div>
 
