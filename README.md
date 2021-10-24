@@ -11,6 +11,14 @@ ASP.NET Core MVC - Web Application for previewing HTML code.
 <li>  MSSQL Server </li>
 <li>  Custom CSS </li>
 <li>  Bootstrap </li>
+<li>  JavaScript </li>
+<li>  RazorPage </li>
 <li>  Used Free Privacy Policy Generator. </li>
 
 </ul>
+
+
+## How work the app:
+
+
+<p>Without registration you can use only HTML Previewer, but if you wanna save it , you must be registrated!</p>

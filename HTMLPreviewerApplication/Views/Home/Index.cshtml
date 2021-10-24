@@ -1,6 +1,4 @@
-﻿@{
-    ViewBag.Title = "Render your HTML code";
-}
+﻿@{ ViewBag.Title = "Render your HTML code"; }
 
 
 <div class="text-center">
@@ -10,34 +8,30 @@
     <br />
 </div>
 <div class="container">
-    <form onsubmit="redering()">
+    <form method="post">
         <div class="row">
             <br />
             <div class="col-md-5">
                 <label for="htmlCode">Write your HTML Code here:</label>
-                <textarea class="textarea"id="htmlCodeInput" name="htmlCodeInput" rows="25" cols="70"></textarea>
+                <textarea class="textarea" id="htmlCodeInput" name="htmlCodeInput" rows="25" cols="70"></textarea>
             </div>
-
 
             <div class="col-md-5 offset-2">
                 <label for="htmlCodeOutput">HTML Preview:</label>
                 <div id="htmlCodeOutput" class="textarea outputTextarea">
-                    
+
                 </div>
-              
-            </div>
-
-        </div>
-        <div class="text-center">
-
-            <div class="pt-5">
-                <button type="submit" class="submit" id="redering">Run</button>
             </div>
         </div>
     </form>
+    <div class="text-center">
+        <div class="pt-5">
+            <button type="submit" class="submit" id="redering">Run</button>
+        </div>
+    </div>
 </div>
 
 
-@section IndexScript {
+@section Scripts {
     <script type="text/javascript" src="~/js/previewJs/preview.js"></script>
 }
