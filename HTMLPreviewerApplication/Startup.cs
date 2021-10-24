@@ -31,7 +31,13 @@ namespace HTMLPreviewerApplication
             services.AddDatabaseDeveloperPageExceptionFilter();
 
             services
-                .AddDefaultIdentity<User>(options => options.SignIn.RequireConfirmedAccount = true)
+                .AddDefaultIdentity<User>(options => {
+                    options.Password.RequireDigit = false;
+                    options.SignIn.RequireConfirmedEmail = false;
+                    options.Password.RequireNonAlphanumeric = false;
+                    options.Password.RequireLowercase = false;
+                    options.Password.RequireUppercase = false;
+                    })
                 .AddEntityFrameworkStores<ApplicationDbContext>();
 
             services.Configure<CookiePolicyOptions>(

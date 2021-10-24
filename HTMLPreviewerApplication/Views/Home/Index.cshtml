@@ -1,8 +1,10 @@
-﻿
-@{ 
-        ViewData["Title"] = "Render your HTML code"; 
- }
+﻿@inject SignInManager<User> SignInManager
+@inject UserManager<User> UserManager
 
+
+@{ 
+    this.ViewData["Title"] = "Render your HTML code"; 
+ }
 
 <div class="text-center">
     <h1 class="font-italic">Welcome to Online HTML Previewer</h1>
@@ -28,18 +30,25 @@
             </div>
         </div>
         <div class="row offset-5">
-            <div class="pt-3">
-                <button type="submit" class="saveButton">Save</button>
-            </div>     
+            @if (this.SignInManager.IsSignedIn(User))
+            {
+                <div class="pt-3">
+                    <button type="submit" class="saveButton">Save</button>
+                </div>
+            }
         </div>
     </form>
     <div class="text-center">
         <div class="pt-2">
             <button type="submit" class="submit" id="redering">Run</button>
         </div>
-        <div class="pt-2">
-            <button type="submit" class="checkButton">Check original</button>
-        </div>
+        @if (this.SignInManager.IsSignedIn(User))
+        {
+            <div class="pt-2">
+                <button type="submit" class="checkButton">Check original</button>
+            </div>
+         }
+
     </div>
 </div>
 

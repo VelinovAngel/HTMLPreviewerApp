@@ -72,6 +72,7 @@ namespace HTMLPreviewerApplication.Areas.Identity.Pages.Account
                 {
                     UserName = Input.Email,
                     Email = Input.Email,
+                    EmailConfirmed = true,
                 };
 
                 var result = await _userManager.CreateAsync(user, Input.Password);

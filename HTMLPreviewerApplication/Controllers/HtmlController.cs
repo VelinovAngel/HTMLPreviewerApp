@@ -1,11 +1,15 @@
 ﻿namespace HTMLPreviewerApplication.Controllers
 {
+    using Microsoft.AspNetCore.Authorization;
     using Microsoft.AspNetCore.Mvc;
 
 
     public class HtmlController : BaseController
     {
-        public IActionResult Index()
+
+        [Authorize]
+        [HttpPost]
+        public IActionResult Save()
         {
             return View();
         }
