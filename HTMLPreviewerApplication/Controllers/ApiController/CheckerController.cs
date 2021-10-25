@@ -24,17 +24,7 @@
         {
             var result = this.sampleService.IsSame(apiModelInput.HtmlCode);
 
-            if (!result)
-            {
-                this.ViewData["Massage"] = "Not exist!";           
-            }
-            else
-            {
-                this.ViewData["Massage"] = "Already exist!";
-            }
-
             return new JsonResult(result);
         }
-
     }
 }

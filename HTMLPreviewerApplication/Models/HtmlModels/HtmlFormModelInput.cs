@@ -7,6 +7,6 @@
         public string Id { get; init; }
 
         [Required]
-        public string HtmlCode { get; init; }
+        public string HtmlCode { get; set; }
     }
 }

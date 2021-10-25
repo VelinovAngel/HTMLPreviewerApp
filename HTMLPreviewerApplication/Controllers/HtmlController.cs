@@ -10,6 +10,7 @@
     using HTMLPreviewerApplication.Service.HtmlSampleService;
     using static HTMLPreviewerApplication.GlobalConstans.HtmlControllerCommon;
 
+
     public class HtmlController : BaseController
     {
         private readonly IHtmlSampleService htmlSampleService;
@@ -23,6 +24,16 @@
         [HttpPost]
         public async Task<IActionResult> Save(SampleFormModel sampleForm)
         {
+            if (sampleForm.HtmlCode.Contains("<form>"))
+            {
+                sampleForm.HtmlCode = sampleForm.HtmlCode.Replace("<form>", string.Empty);
+                sampleForm.HtmlCode = sampleForm.HtmlCode.Replace("</form>", string.Empty);
+            }
+            if (string.IsNullOrWhiteSpace(sampleForm.HtmlCode))
+            {
+                this.TempData["Message"] = "You can't insert <form> </form> tags";
+                return RedirectToAction("Index", "Home");
+            }
             if (!ModelState.IsValid)
             {
                 this.TempData["Message"] = "Invalid HTML sample!";
@@ -31,7 +42,7 @@
 
             var size = this.htmlSampleService.MemoryResizer(sampleForm.HtmlCode);
 
-            if(size > Size_HTML_In_Input)
+            if (size > Size_HTML_In_Input)
             {
                 this.TempData["Message"] = "Size is bigger than request! Please resize you HTML code!";
                 return RedirectToAction("Index", "Home");
@@ -60,6 +71,7 @@
         }
 
 
+        [ValidateAntiForgeryToken]
         [Authorize]
         [HttpPost]
         public async Task<IActionResult> Edit(SampleFormModel sampleFormModel)
@@ -88,7 +100,7 @@
                 return RedirectToAction("Index", "Home");
             }
 
-            await this.htmlSampleService.EditHtmCode(new SampleFormModel { HtmlCode = sampleFormModel.HtmlCode, Id = sampleFormModel.Id});
+            await this.htmlSampleService.EditHtmCode(new SampleFormModel { HtmlCode = sampleFormModel.HtmlCode, Id = sampleFormModel.Id });
 
             this.TempData["Success"] = "Html code is success saved!";
             return RedirectToAction("All", "Html");

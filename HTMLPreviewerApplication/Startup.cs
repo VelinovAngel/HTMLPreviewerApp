@@ -53,11 +53,6 @@ namespace HTMLPreviewerApplication
 
             services.AddTransient<IHtmlSampleService, HtmlSampleService>();
 
-            //services.AddRazorPages(options =>
-            //{
-            //    options.Conventions.AddAreaPageRoute("Identity", "/Account/Register", "/Register");
-            //    options.Conventions.AddAreaPageRoute("Identity", "/Account/Login", "/Login");
-            //}); 
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

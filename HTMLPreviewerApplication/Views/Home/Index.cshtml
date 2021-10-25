@@ -16,15 +16,17 @@
                     action = "Edit";
                     htmlId = Model.Id;
 
-                } }
+                } 
+}
 
 
 @if (this.TempData.ContainsKey("Message"))
 {
-<div class="alert alert-danger alert-dismissible fade show">
-    <button type="button" class="close" data-dismiss="alert">&times;</button>
-    @this.TempData["Message"]
-</div>}
+        <div class="alert alert-danger alert-dismissible fade show">
+            <button type="button" class="close" data-dismiss="alert">&times;</button>
+            @this.TempData["Message"]
+        </div>
+}
 
 <div class="alert alert-success alert-dismissible fade show invisible" id="alertMessage">
     <button type="button" class="close" data-dismiss="alert">&times;</button>
@@ -40,7 +42,7 @@
     <hr />
 </div>
 <div class="container">
-    <form method="post" asp-controller="Html" asp-action="@action" asp-route-id="@htmlId">
+    <form method="POST" asp-controller="Html" asp-action="@action" asp-route-id="@htmlId">
         <div asp-validation-summary="All" class="text-danger"></div>
         <div class="row">
             <br />
@@ -59,9 +61,9 @@
             <div class="row offset-5">
                 @if (this.SignInManager.IsSignedIn(User))
                 {
-    <button type="button" class="saveButton" data-toggle="modal" data-target="#rejectButton">
-        @action
-    </button>
+                     <button type="button" class="saveButton" data-toggle="modal" data-target="#rejectButton">
+                         @action
+                     </button>
 
                     <div class="modal fade" id="rejectButton" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                         <div class="modal-dialog ">
@@ -81,7 +83,8 @@
                                 </div>
                             </div>
                         </div>
-                    </div>}
+                    </div>
+                  }
             </div>
         </div>
     </form>
@@ -89,11 +92,12 @@
         <div class="pt-2">
             <button type="submit" class="submit" id="redering">Run</button>
         </div>
-        @if (this.SignInManager.IsSignedIn(User) && Model == null)
-        {
-<div class="pt-2">
-    <button type="submit" class="checkButton" id="checkButton">Check original</button>
-</div>}
+         @if (this.SignInManager.IsSignedIn(User) && Model == null)
+         {
+            <div class="pt-2">
+                <button type="submit" class="checkButton" id="checkButton">Check original</button>
+            </div>
+         }
     </div>
 </div>
 

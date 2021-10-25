@@ -31,7 +31,7 @@
         {
             var newHtmlSample = new HtmlSample
             {
-                HtmlCode = HtmlCode.ToString(),
+                HtmlCode = HtmlCode,
                 CreatedOn = DateTime.UtcNow,
                 ModifiedOn = DateTime.UtcNow,
                 UserId = userId
@@ -51,6 +51,7 @@
                 ModifiedOn = x.ModifiedOn
             })
             .OrderByDescending(x => x.CreatedOn)
+            .ThenByDescending(x=>x.ModifiedOn)
             .ToList();
 
         public HtmlCodeServiceModel HtmlCode(string htmlId)
@@ -87,9 +88,7 @@
             var getAllHtml = this.dbContext.HtmlSample
                             .ToList();
             bool result = false;
-
             var clearInput = inputHtml.Replace("\n", "");
-            var inputLen = clearInput.Length;
 
             foreach (var text in getAllHtml)
             {
@@ -105,11 +104,6 @@
                     result = true;
                 }
             }
-            //result = String.Equals(text.HtmlCode.Trim(), inputHtml.Trim(), StringComparison.OrdinalIgnoreCase);
-            //bool result = root.Equals(root2, StringComparison.OrdinalIgnoreCase);
-            //bool areEqual = String.Equals(root, root2, StringComparison.OrdinalIgnoreCase);
-            //int comparison = String.Compare(root, root2, comparisonType: StringComparison.OrdinalIgnoreCase);
-
 
             return result;
         }
