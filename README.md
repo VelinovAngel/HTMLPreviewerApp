@@ -34,5 +34,5 @@ ASP.NET Core MVC - Web Application for previewing HTML code.
 <img src="https://github.com/VelinovAngel/HTMLPreviewerApp/blob/main/HtmlSample.jpg"/>
 
 
-<h5>Layout/h5>
+<h5>Layout</h5>
 <img src="https://github.com/VelinovAngel/HTMLPreviewerApp/blob/main/Layout.jpg"/>
