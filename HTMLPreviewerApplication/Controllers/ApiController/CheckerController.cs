@@ -2,6 +2,8 @@
 {
     using HTMLPreviewerApplication.Data.Models;
     using HTMLPreviewerApplication.Models.ApiModel;
+    using HTMLPreviewerApplication.Models.HtmlModels;
+    using HTMLPreviewerApplication.Service.HtmlSampleService;
     using Microsoft.AspNetCore.Authorization;
     using Microsoft.AspNetCore.Identity;
     using Microsoft.AspNetCore.Mvc;
@@ -9,14 +11,11 @@
 
     public class CheckerController : BaseApiController
     {
-        private readonly UserManager<User> userManager;
-        private readonly SignInManager<User> signInManager;
+        private readonly IHtmlSampleService sampleService;
 
-        public CheckerController(UserManager<User> userManager, 
-            SignInManager<User> signInManager)
+        public CheckerController(IHtmlSampleService sampleService)
         {
-            this.userManager = userManager;
-            this.signInManager = signInManager;
+            this.sampleService = sampleService;
         }
 
         [Authorize]
@@ -24,9 +23,18 @@
         [Route("api/checker")]
         public IActionResult Post(ApiModelInput apiModelInput)
         {
-          
+            var result = this.sampleService.IsSame(apiModelInput.HtmlCode);
 
-            return Json(new { status = "success" });
+            if (!result)
+            {
+                this.ViewData["Massage"] = "Not exist!";           
+            }
+            else
+            {
+                this.ViewData["Massage"] = "Already exist!";
+            }
+
+            return RedirectToAction("Index", "Home", new SampleFormModel { HtmlCode = apiModelInput.HtmlCode});
         }
 
     }

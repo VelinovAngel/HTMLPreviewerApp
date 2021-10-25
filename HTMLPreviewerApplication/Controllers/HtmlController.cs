@@ -1,12 +1,13 @@
 ﻿namespace HTMLPreviewerApplication.Controllers
 {
+
+    using System.Threading.Tasks;
+    using Microsoft.AspNetCore.Mvc;
+    using Microsoft.AspNetCore.Authorization;
+
     using HTMLPreviewerApplication.Infrastructure;
-    using HTMLPreviewerApplication.Models.ApiModel;
     using HTMLPreviewerApplication.Models.HtmlModels;
     using HTMLPreviewerApplication.Service.HtmlSampleService;
-    using Microsoft.AspNetCore.Authorization;
-    using Microsoft.AspNetCore.Mvc;
-    using System.Threading.Tasks;
     using static HTMLPreviewerApplication.GlobalConstans.HtmlControllerCommon;
 
     public class HtmlController : BaseController

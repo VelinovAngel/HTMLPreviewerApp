@@ -31,7 +31,7 @@
         {
             var newHtmlSample = new HtmlSample
             {
-                HtmlCode = HtmlCode,
+                HtmlCode = HtmlCode.ToString(),
                 CreatedOn = DateTime.UtcNow,
                 ModifiedOn = DateTime.UtcNow,
                 UserId = userId
@@ -50,7 +50,7 @@
                 CreatedOn = x.CreatedOn,
                 ModifiedOn = x.ModifiedOn
             })
-            .OrderByDescending(x=>x.CreatedOn)
+            .OrderByDescending(x => x.CreatedOn)
             .ToList();
 
         public HtmlCodeServiceModel HtmlCode(string htmlId)
@@ -68,7 +68,7 @@
             var htmlCode = this.dbContext.HtmlSample
                 .FirstOrDefault(x => x.Id == sampleForm.Id);
 
-            if(htmlCode == null)
+            if (htmlCode == null)
             {
                 return false;
             }
@@ -79,7 +79,10 @@
             return await this.dbContext.SaveChangesAsync() > 0;
         }
 
-        public bool IsExist(string htmlCode, string userId)
-            => this.dbContext.HtmlSample.Any(x => x.Id == htmlCode && x.UserId == userId);
+        public bool IsExist(string htmlCodeId, string userId)
+            => this.dbContext.HtmlSample.Any(x => x.Id == htmlCodeId && x.UserId == userId);
+
+        public bool IsSame(string inputHtml)
+            => this.dbContext.HtmlSample.Any(x => x.HtmlCode == inputHtml);
     }
 }

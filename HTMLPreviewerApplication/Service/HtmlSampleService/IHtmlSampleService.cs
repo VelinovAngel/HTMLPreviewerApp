@@ -18,6 +18,8 @@
 
         Task<bool> EditHtmCode(SampleFormModel sampleForm);
 
-        bool IsExist(string htmlCode, string userId);
+        bool IsExist(string htmlCodeId, string userId);
+
+        public bool IsSame(string inputHtml);
     }
 }
