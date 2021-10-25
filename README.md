@@ -1,7 +1,7 @@
 # HTMLPreviewerApp
 ASP.NET Core MVC - Web Application for previewing HTML code.
 
-## Used Technologies and libraries:
+## Used Technologies and NuGet Packages:
 
 <hr/>
 <ul>
@@ -12,6 +12,7 @@ ASP.NET Core MVC - Web Application for previewing HTML code.
 <li>  Custom CSS </li>
 <li>  Bootstrap </li>
 <li>  JavaScript </li>
+<li>  jQuery </li>
 <li>  RazorPage </li>
 <li>  Used Free Privacy Policy Generator. </li>
 
