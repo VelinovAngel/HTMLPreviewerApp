@@ -49,7 +49,9 @@
                 Id = x.Id,
                 CreatedOn = x.CreatedOn,
                 ModifiedOn = x.ModifiedOn
-            }).ToList();
+            })
+            .OrderByDescending(x=>x.CreatedOn)
+            .ToList();
 
         public HtmlCodeServiceModel HtmlCode(string htmlId)
             => this.dbContext.HtmlSample

@@ -31,24 +31,33 @@ namespace HTMLPreviewerApplication
             services.AddDatabaseDeveloperPageExceptionFilter();
 
             services
-                .AddDefaultIdentity<User>(options => {
+                .AddDefaultIdentity<User>(options =>
+                {
                     options.Password.RequireDigit = false;
                     options.SignIn.RequireConfirmedEmail = false;
                     options.Password.RequireNonAlphanumeric = false;
                     options.Password.RequireLowercase = false;
                     options.Password.RequireUppercase = false;
-                    })
+                })
                 .AddEntityFrameworkStores<ApplicationDbContext>();
-
+            services.AddAntiforgery(option =>
+            {
+                option.HeaderName = "X-CSRF-TOKEN";
+            });
+            services.AddControllersWithViews(
+                options =>
+                {
+                    options.Filters.Add(new AutoValidateAntiforgeryTokenAttribute());
+                }).AddRazorRuntimeCompilation();
             services.AddControllersWithViews();
 
             services.AddTransient<IHtmlSampleService, HtmlSampleService>();
 
-            services.AddRazorPages(options =>
-            {
-                options.Conventions.AddAreaPageRoute("Identity", "/Account/Register", "/Register");
-                options.Conventions.AddAreaPageRoute("Identity", "/Account/Login", "/Login");
-            }); 
+            //services.AddRazorPages(options =>
+            //{
+            //    options.Conventions.AddAreaPageRoute("Identity", "/Account/Register", "/Register");
+            //    options.Conventions.AddAreaPageRoute("Identity", "/Account/Login", "/Login");
+            //}); 
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

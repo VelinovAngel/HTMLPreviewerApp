@@ -1,6 +1,7 @@
 ﻿namespace HTMLPreviewerApplication.Controllers
 {
     using HTMLPreviewerApplication.Infrastructure;
+    using HTMLPreviewerApplication.Models.ApiModel;
     using HTMLPreviewerApplication.Models.HtmlModels;
     using HTMLPreviewerApplication.Service.HtmlSampleService;
     using Microsoft.AspNetCore.Authorization;
@@ -86,7 +87,7 @@
                 return RedirectToAction("Index", "Home");
             }
 
-            await this.htmlSampleService.EditHtmCode(new SampleFormModel { HtmlCode = sampleHtml.Code, Id = sampleHtml.Id});
+            await this.htmlSampleService.EditHtmCode(new SampleFormModel { HtmlCode = sampleFormModel.HtmlCode, Id = sampleFormModel.Id});
 
             this.TempData["Success"] = "Html code is success saved!";
             return RedirectToAction("All", "Html");

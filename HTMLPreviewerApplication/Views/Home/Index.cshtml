@@ -6,6 +6,7 @@
 @{ 
      this.ViewData["Title"] = "Render your HTML code";
      var action = string.Empty;
+     var htmlId = string.Empty;
 
      if (Model == null)
      {
@@ -14,6 +15,8 @@
      else
      {
          action = "Edit";
+         htmlId = Model.Id;
+
      } 
 }
 
@@ -37,11 +40,12 @@
     <hr />
 </div>
 <div class="container">
-    <form method="post" asp-controller="Html" asp-action="@action">
+    <form method="post" asp-controller="Html" asp-action="@action" asp-route-id="@htmlId">
         <div asp-validation-summary="All" class="text-danger"></div>
         <div class="row">
             <br />
             <div class="col-md-5">
+                <input asp-for="Id" id="sample-id" class="hide" />
                 <label asp-for="HtmlCode">Write your HTML Code here:</label>
                 <textarea asp-for="HtmlCode" class="textarea" id="htmlCodeInput" rows="25" cols="70"></textarea>
             </div>
@@ -52,14 +56,34 @@
                     @Html.Raw(Model?.HtmlCode);
                 </div>
             </div>
-        <div class="row offset-5">
-            @if (this.SignInManager.IsSignedIn(User))
-             {
-                <div class="pt-3">
-                    <button type="submit" class="saveButton">@action</button>
-                </div>           
-             }
-        </div>
+            <div class="row offset-5">
+                @if (this.SignInManager.IsSignedIn(User))
+                {         
+                    <button type="button" class="saveButton" data-toggle="modal" data-target="#rejectButton">
+                        @action
+                    </button>
+
+                    <div class="modal fade" id="rejectButton" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                        <div class="modal-dialog ">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-titlete text-center" id="staticBackdropLabel" style="color:darkred"><u>Confirmation message!</u></h5>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                <div class="modal-body">
+                                    <p class="bg-light">Are you sure you want to @action this data?</p>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-info btn-icon" data-dismiss="modal">Close</button>
+                                    <button type="submit" class="btn btn-danger btn-icon">Confirm</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                 }
+            </div>
         </div>
     </form>
     <div class="text-center">
@@ -69,7 +93,7 @@
         @if (this.SignInManager.IsSignedIn(User) && Model != null)
         {
             <div class="pt-2">
-                <button type="submit" class="checkButton">Check original</button>
+                <button type="submit" class="checkButton" id="checkButton">Check original</button>
             </div>
         }
     </div>
