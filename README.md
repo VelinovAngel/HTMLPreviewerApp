@@ -27,7 +27,9 @@ ASP.NET Core MVC - Web Application for previewing HTML code.
 <h5> Here you can see the application </h5>
 https://htmlpreviewerapplication.azurewebsites.net/
 
-<p> For testing use : Username : admin@admin.bg Password : admin123 </p>
+<p> For testing use : </p>
+<p>  Username : admin@admin.bg </p>
+<p> Password : admin123 </p>
 
 
 <h5>Database</h5>
