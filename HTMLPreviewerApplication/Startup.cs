@@ -6,7 +6,6 @@ namespace HTMLPreviewerApplication
     using Microsoft.AspNetCore.Builder;
     using Microsoft.AspNetCore.Hosting;
     using Microsoft.AspNetCore.Http;
-    using Microsoft.AspNetCore.Identity;
     using Microsoft.AspNetCore.Mvc;
     using Microsoft.EntityFrameworkCore;
     using Microsoft.Extensions.Configuration;
@@ -41,23 +40,7 @@ namespace HTMLPreviewerApplication
                     })
                 .AddEntityFrameworkStores<ApplicationDbContext>();
 
-            services.Configure<CookiePolicyOptions>(
-                options =>
-                {
-                    options.CheckConsentNeeded = context => true;
-                    options.MinimumSameSitePolicy = SameSiteMode.None;
-                });
-
-            services.AddAntiforgery(option =>
-            {
-                option.HeaderName = "X-CSRF-TOKEN";
-            });     
-
-            services.AddControllersWithViews(
-               options =>
-               {
-                   options.Filters.Add(new AutoValidateAntiforgeryTokenAttribute());
-               }).AddRazorRuntimeCompilation();
+            services.AddControllersWithViews();
 
             services.AddTransient<IHtmlSampleService, HtmlSampleService>();
 

@@ -1,0 +1,43 @@
+﻿@model IEnumerable<HtmlSampleInfo>
+
+
+
+@{
+    this.ViewData["Title"] = "All stored HTML";
+}
+
+@if (this.TempData.ContainsKey("Success"))
+{
+    <div class="alert alert-success alert-dismissible fade show">
+        <button type="button" class="close" data-dismiss="alert">&times;</button>
+        @this.TempData["Success"]
+    </div>
+}
+
+<div class="">
+    <h1 class="heading">All stored HTML codes in your list</h1>
+
+    <div class="">
+        <table class="table table-hover">
+            <thead>
+                <tr>
+                    <th scope="col">CreatedOn</th>
+                    <th scope="col">ModifiedOn</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>@item.CreatedOn</td>
+                        <td>@item.ModifiedOn</td>
+                        <td><a class="btn btn-info" asp-controller="Home" asp-action="Index" asp-route-id="@item.Id" >View</a></td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+
+    </div>
+</div>
+
+

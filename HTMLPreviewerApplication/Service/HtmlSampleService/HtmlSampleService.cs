@@ -9,6 +9,7 @@
     using HTMLPreviewerApplication.Data;
     using HTMLPreviewerApplication.Data.Models;
     using HTMLPreviewerApplication.Models.HtmlModels;
+    using HTMLPreviewerApplication.Service.Models;
 
     public class HtmlSampleService : IHtmlSampleService
     {
@@ -49,5 +50,34 @@
                 CreatedOn = x.CreatedOn,
                 ModifiedOn = x.ModifiedOn
             }).ToList();
+
+        public HtmlCodeServiceModel HtmlCode(string htmlId)
+            => this.dbContext.HtmlSample
+            .Where(x => x.Id == htmlId)
+            .Select(x => new HtmlCodeServiceModel
+            {
+                Id = x.Id,
+                Code = x.HtmlCode
+            })
+            .FirstOrDefault();
+
+        public async Task<bool> EditHtmCode(SampleFormModel sampleForm)
+        {
+            var htmlCode = this.dbContext.HtmlSample
+                .FirstOrDefault(x => x.Id == sampleForm.Id);
+
+            if(htmlCode == null)
+            {
+                return false;
+            }
+
+            htmlCode.HtmlCode = sampleForm.HtmlCode;
+            htmlCode.ModifiedOn = DateTime.UtcNow;
+
+            return await this.dbContext.SaveChangesAsync() > 0;
+        }
+
+        public bool IsExist(string htmlCode, string userId)
+            => this.dbContext.HtmlSample.Any(x => x.Id == htmlCode && x.UserId == userId);
     }
 }

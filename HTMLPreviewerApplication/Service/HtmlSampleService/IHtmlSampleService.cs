@@ -4,6 +4,7 @@
     using System.Threading.Tasks;
 
     using HTMLPreviewerApplication.Models.HtmlModels;
+    using HTMLPreviewerApplication.Service.Models;
 
     public interface IHtmlSampleService
     {
@@ -12,5 +13,11 @@
         Task<bool> CreateAndSave(string HtmlCode, string userId);
 
         IEnumerable<HtmlSampleInfo> All(string userId);
+
+        HtmlCodeServiceModel HtmlCode(string htmlId);
+
+        Task<bool> EditHtmCode(SampleFormModel sampleForm);
+
+        bool IsExist(string htmlCode, string userId);
     }
 }

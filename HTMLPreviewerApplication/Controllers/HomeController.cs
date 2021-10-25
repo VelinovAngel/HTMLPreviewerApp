@@ -1,23 +1,28 @@
 ﻿namespace HTMLPreviewerApplication.Controllers
 {
     using HTMLPreviewerApplication.Models;
+    using HTMLPreviewerApplication.Models.HtmlModels;
+    using HTMLPreviewerApplication.Service.HtmlSampleService;
     using Microsoft.AspNetCore.Mvc;
-    using Microsoft.Extensions.Logging;
-    using System;
-    using System.Collections.Generic;
     using System.Diagnostics;
-    using System.Linq;
-    using System.Threading.Tasks;
+
 
     public class HomeController : Controller
     {
-        public HomeController()
+        private readonly IHtmlSampleService sampleService;
+
+        public HomeController(IHtmlSampleService sampleService)
         {
-            
+            this.sampleService = sampleService;
         }
 
-        public IActionResult Index()
+        public IActionResult Index(string id)
         {
+            var sampleHtml = this.sampleService.HtmlCode(id);
+            if(sampleHtml != null)
+            {
+                return this.View(new SampleFormModel { HtmlCode = sampleHtml.Code, Id = id });
+            }
             return View();
         }
 

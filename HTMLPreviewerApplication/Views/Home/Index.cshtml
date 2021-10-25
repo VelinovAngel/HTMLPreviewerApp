@@ -26,13 +26,7 @@
     </div>
 }
 
-@if (this.TempData.ContainsKey("Success"))
-{
-    <div class="alert alert-success alert-dismissible fade show">
-        <button type="button" class="close" data-dismiss="alert">&times;</button>
-        @this.TempData["Message"]
-    </div>
-}
+
 
 <div class="text-center">
     <h1 class="font-italic">Welcome to Online HTML Previewer</h1>
@@ -43,7 +37,8 @@
     <hr />
 </div>
 <div class="container">
-    <form method="post">
+    <form method="post" asp-controller="Html" asp-action="@action">
+        <div asp-validation-summary="All" class="text-danger"></div>
         <div class="row">
             <br />
             <div class="col-md-5">
@@ -54,17 +49,17 @@
             <div class="col-md-5 offset-2">
                 <label for="htmlCodeOutput">HTML Preview:</label>
                 <div id="htmlCodeOutput" class="textarea outputTextarea">
-
+                    @Html.Raw(Model?.HtmlCode);
                 </div>
             </div>
-        </div>
         <div class="row offset-5">
             @if (this.SignInManager.IsSignedIn(User))
-            {
+             {
                 <div class="pt-3">
-                    <button asp-controller="Html" asp-action="@action" type="submit" class="saveButton">Save</button>
-                </div>            
-            }
+                    <button type="submit" class="saveButton">@action</button>
+                </div>           
+             }
+        </div>
         </div>
     </form>
     <div class="text-center">
