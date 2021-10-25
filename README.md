@@ -24,8 +24,10 @@ ASP.NET Core MVC - Web Application for previewing HTML code.
 
 <p>Without registration you can use only HTML Previewer, but if you wanna save it , you must be registrated!</p>
 
-<h1> Here you can see the application </h1>
+<h5> Here you can see the application </h5>
 https://htmlpreviewerapplication.azurewebsites.net/
+
+<p> For testing use : Username : admin@admin.bg Password : admin123 </p>
 
 
 <h5>Database</h5>
