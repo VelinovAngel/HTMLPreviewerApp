@@ -2,7 +2,6 @@
 {
     using HTMLPreviewerApplication.Data.Models;
     using HTMLPreviewerApplication.Models.ApiModel;
-    using HTMLPreviewerApplication.Models.HtmlModels;
     using HTMLPreviewerApplication.Service.HtmlSampleService;
     using Microsoft.AspNetCore.Authorization;
     using Microsoft.AspNetCore.Identity;
@@ -34,7 +33,7 @@
                 this.ViewData["Massage"] = "Already exist!";
             }
 
-            return RedirectToAction("Index", "Home", new SampleFormModel { HtmlCode = apiModelInput.HtmlCode});
+            return new JsonResult(result);
         }
 
     }

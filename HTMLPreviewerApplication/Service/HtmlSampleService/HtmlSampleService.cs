@@ -83,6 +83,35 @@
             => this.dbContext.HtmlSample.Any(x => x.Id == htmlCodeId && x.UserId == userId);
 
         public bool IsSame(string inputHtml)
-            => this.dbContext.HtmlSample.Any(x => x.HtmlCode == inputHtml);
+        {
+            var getAllHtml = this.dbContext.HtmlSample
+                            .ToList();
+            bool result = false;
+
+            var clearInput = inputHtml.Replace("\n", "");
+            var inputLen = clearInput.Length;
+
+            foreach (var text in getAllHtml)
+            {
+                var textDb = text.HtmlCode.Replace(Environment.NewLine, "");
+                var textCleaner = textDb.Replace("\n", "");
+                var textLeng = textCleaner.Length;
+                if (textCleaner != clearInput)
+                {
+                    result = false;
+                }
+                else
+                {
+                    result = true;
+                }
+            }
+            //result = String.Equals(text.HtmlCode.Trim(), inputHtml.Trim(), StringComparison.OrdinalIgnoreCase);
+            //bool result = root.Equals(root2, StringComparison.OrdinalIgnoreCase);
+            //bool areEqual = String.Equals(root, root2, StringComparison.OrdinalIgnoreCase);
+            //int comparison = String.Compare(root, root2, comparisonType: StringComparison.OrdinalIgnoreCase);
+
+
+            return result;
+        }
     }
 }
